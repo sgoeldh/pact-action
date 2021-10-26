@@ -1,21 +1,29 @@
-name: 'Hello World'
-description: 'Greet someone'
+name: "pact-create-tag-action"
+description: "Creates a tag on the specified version"
+branding:
+  icon: "bookmark"
+  color: "green"
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  pacticipant:
+    description: "the pacticipant for whose pact, a tag is created."
     required: true
-    default: 'World'
-outputs:
-  random-number:
-    description: "Random number"
-    value: ${{ steps.random-number-generator.outputs.random-id }}
+  pact_broker_url:
+    description: "The url of your pact broker"
+    required: true
+  pact_broker_username:
+    description: "Your pact broker username"
+    required: true
+  pact_broker_password:
+    description: "Your pact broker password"
+    required: true
+  version:
+    description: "Version to tag"
+    required: true
+  tag:
+    description: "Tag to create"
+    required: true
 runs:
   using: "composite"
   steps:
-    - run: echo Hello ${{ inputs.who-to-greet }}.
-      shell: bash
-    - id: random-number-generator
-      run: echo "::set-output name=random-id::$(echo $RANDOM)"
-      shell: bash
-    - run: ${{ github.action_path }}/goodbye.sh
+    - run: ${{ github.action_path }}/createTag.sh
       shell: bash
