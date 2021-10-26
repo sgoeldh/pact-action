@@ -1,4 +1,4 @@
-name: "pact-create-tag-action"
+name: "pact-action-create-tag"
 description: "Creates a tag on the specified version"
 branding:
   icon: "bookmark"
